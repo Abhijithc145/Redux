@@ -4,6 +4,7 @@ import {Provider} from 'react-redux'
 import store from './redux/Cakes/store';
 
 function App() {
+  console.log(store)
   return (
     <Provider store={store}>
 
