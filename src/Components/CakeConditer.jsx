@@ -1,33 +1,38 @@
-import React from 'react'
-import { buyCake } from '../redux/index'
-import { connect } from 'react-redux'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  buyCakeIncreaseAction,
+  ReturnCakeAction,
+} from "../redux/Cakes/CakeActions";
 
-const CakeConditer = (props) => {
-  
+export const CakeConditer = () => {
+  const dispatch = useDispatch();
+
+  const { numOfCakes } = useSelector((state) => {
+    return state.Cake;
+  });
+
+  // console.log(numOfCakes, "numOfCakesnumOfCakesnumOfCakes");
+
+  const handleBuyCake = () => {
+    dispatch(buyCakeIncreaseAction());
+  };
+
+  const handleReturnCake = () => {
+    dispatch(ReturnCakeAction());
+  };
+
   return (
     <div>
-        <h2>Number of cakes : {props.numOfCakes} </h2>
-        <button onClick={props.buyCake}>Buy Cake </button>
+      <h2>Number of cakes : {numOfCakes} </h2>
+      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+        <div>
+          <button onClick={() => handleBuyCake()}>Buy Cake </button>
+        </div>
+        <div>
+          <button onClick={() => handleReturnCake()}>Return Cake </button>
+        </div>
+      </div>
     </div>
-  )
-}
-
-const mapStateToProps = state =>{
-  return{
-    numOfCakes:state.numOfCakes,
-    
-  }
-}
-
-
-const mapDispatchToProps=dispatch=>{
-  return{
-    buyCake:()=>dispatch(buyCake())
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  mapDispatchToProps
-  ) (CakeConditer)
+  );
+};

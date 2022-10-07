@@ -1,5 +1,5 @@
 import './App.css';
-import CakeConditer from './Components/CakeConditer';
+import {CakeConditer} from './Components/CakeConditer';
 import {Provider} from 'react-redux'
 import store from './redux/Cakes/store';
 
